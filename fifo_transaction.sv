@@ -1,10 +1,8 @@
-class fifo_transaction;
-    logic clk ,
-    logic rst ,
-    logic wr_en ,
-    logic rd_en ,
-    rand logic [WIDTH-1 : 0] data_in ,
-    logic reg [WIDTH-1 : 0] data_out ,
-    logic reg full,
-    logic reg empt
+class fifo_transaction #(parameter WIDTH = 32);
+    logic wr_en;
+    logic rd_en;
+    rand logic [WIDTH-1 : 0] data_in;
+    logic [WIDTH-1 : 0] data_out;
+    logic full;
+    logic empt;
 endclass
