@@ -11,10 +11,11 @@ class fifo_driver;
     task main();
         forever begin
             @ (posedge vir_fifoInterface.clk);
+            gen2driver.get(fifoTras_of_driver);
             vir_fifoInterface.data_in <= fifoTras_of_driver.data_in;
             fifoTras_of_driver.data_out <= vir_fifoInterface.data_out;
             $display("*************************** Values at Driver *************************** ");
-            $display("Data in : %d Data out %d" , fifoTras_of_driver.data_in , fifoTras_of_driver.data_out);
+            $display("Data in : %d , Data out %0d" , fifoTras_of_driver.data_in , fifoTras_of_driver.data_out);
         end
     endtask
 endclass
