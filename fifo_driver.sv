@@ -12,10 +12,22 @@ class fifo_driver;
         forever begin
             @ (posedge vir_fifoInterface.clk);
             gen2driver.get(fifoTras_of_driver);
-            vir_fifoInterface.data_in <= fifoTras_of_driver.data_in;
-            fifoTras_of_driver.data_out <= vir_fifoInterface.data_out;
+            // Reset 
+            vir_fifoInterface.rst <= 0;
+            @ (posedge vir_fifoInterface.clk);
+            vir_fifoInterface.rst <= 1;
+            vir_fifoInterface.wr_en <= fifoTras_of_driver.wr_en; // Write enable send to interface 
+            //Read
+            vir_fifoInterface.rd_en <= fifoTras_of_driver.rd_en;
+            vir_fifoInterface.data_in <= fifoTras_of_driver.data_in; // Data in is send to interface 
+            fifoTras_of_driver.data_out <= vir_fifoInterface.data_out; // data out is taken From interface
+            fifoTras_of_driver.full <= vir_fifoInterface.full; // Full Signal is taken From Interface 
+            //Full 
+            fifoTras_of_driver.full <= vir_fifoInterface.full;
+            //Empty
+           fifoTras_of_driver.empty <= vir_fifoInterface.empty;
             $display("*************************** Values at Driver *************************** ");
-            $display("Data in : %d , Data out %0d" , fifoTras_of_driver.data_in , fifoTras_of_driver.data_out);
+            $display("Data in : %d , Write Enable :%0d Read Enable :%0d, Data out %0d" , fifoTras_of_driver.data_in , fifoTras_of_driver.wr_en, fifoTras_of_driver.rd_en ,fifoTras_of_driver.data_out);
         end
     endtask
 endclass
