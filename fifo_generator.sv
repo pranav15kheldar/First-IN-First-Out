@@ -6,7 +6,7 @@ class fifo_generator;
     endfunction
 
     task main();
-        repeat(5) begin
+        repeat(10) begin
             fifoTras = new();  // Object Created For Transcation 
             fifoTras.randomize(); // Randomize 
             $display(" ***************** Data Generated In Generator *******************");
