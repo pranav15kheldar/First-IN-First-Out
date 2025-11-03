@@ -6,5 +6,5 @@ interface fifo_interface #(parameter WIDTH = 32 ) ;
     logic [WIDTH-1 : 0] data_in;
     logic [WIDTH-1 : 0] data_out;
     logic full;
-    logic empt;
+    logic empty;
 endinterface
