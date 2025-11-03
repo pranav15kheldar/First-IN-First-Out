@@ -26,7 +26,7 @@ module fifo_top ();
     initial begin
         $dumpfile("dump.vcd");
         $dumpvars();
-        #110;
+        #200;
         $finish;
     end
 endmodule
